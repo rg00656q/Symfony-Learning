@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  {{ carpool.startTime|date('H:i') }} {{ carpool.startLocation }} =>
+  {{ carpool.stopTime|date('H:i') }} {{ carpool.stopLocation }}<br />
+  {{ carpool.price / 100 }}.{{ carpool.price % 100 }} €<br />
+  {{ carpool.userId }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			{{message}}
+		</div>
+	{% endfor %}
+	<table class="table table-stripped">
+		<thead>
+			<tr>
+				<td>Lieu de départ</td>
+				<td>Lieu d'arrivée</td>
+				<td>Départ</td>
+				<td>Arrivée</td>
+				<td>Prix</td>
+				<td>Conducteur</td>
+				<td>Actions</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for carpool in carpools %}
+				<tr>
+					<td>{{ carpool.startLocation }}</td>
+					<td>{{ carpool.stopLocation }}</td>
+					<td>{{ carpool.startTime|date('Y-m-d') }}</td>
+					<td>{{ carpool.stopTime|date('Y-m-d') }}</td>
+					<td>
+						<a href="{{ path('carpool-id', { carpool: carpool.id }) }}">
+							{{ carpool.price }}
+						</a>
+					</td>
+					<td>{{ carpool.userId }}</td>
+					<td>
+						<a href="{{path('delete', { carpool: carpool.id })}}" class="text-danger">Remove</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
