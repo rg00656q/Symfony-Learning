@@ -6,6 +6,7 @@ use App\Entity\CarPool;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CarPoolType extends AbstractType
 {
@@ -18,6 +19,11 @@ class CarPoolType extends AbstractType
             ->add('stop_time')
             ->add('price')
             ->add('user_id')
+            ->add('save', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary float-end mb-2'
+                ]
+            ])
         ;
     }
 

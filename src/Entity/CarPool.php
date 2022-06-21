@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CarPoolRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarPoolRepository::class)]
 class CarPool
@@ -14,21 +15,39 @@ class CarPool
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+    * @Assert\NotBlank
+    */
     private $start_location;
 
     #[ORM\Column(type: 'string', length: 255)]
+    /**
+    * @Assert\NotBlank
+    */
     private $stop_location;
 
     #[ORM\Column(type: 'datetime')]
+    /**
+    * @Assert\NotBlank
+    */
     private $start_time;
 
     #[ORM\Column(type: 'datetime')]
+    /**
+    * @Assert\NotBlank
+    */
     private $stop_time;
 
     #[ORM\Column(type: 'integer')]
+    /**
+    * @Assert\NotBlank
+    */
     private $price;
 
     #[ORM\Column(type: 'integer')]
+    /**
+    * @Assert\NotBlank
+    */
     private $user_id;
 
     public function getId(): ?int

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\CarPool;
+use App\Form\CarPoolType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class HomeController extends AbstractController
     {
         $carpools = $doctrine->getRepository(CarPool::class)->findAll();
 
-        return $this->render('home/carpool.html.twig', [
+        return $this->render('carpool/index.html.twig', [
             'carpools' => $carpools,
         ]);
     }
@@ -32,7 +33,7 @@ class HomeController extends AbstractController
     #[Route('/trip/{carpool}', name: 'carpool-id')]
     public function show(CarPool $carpool): Response
     {
-        return $this->render('home/show.html.twig', [
+        return $this->render('carpool/show.html.twig', [
             'carpool' => $carpool,
         ]);
     }
@@ -42,23 +43,22 @@ class HomeController extends AbstractController
     {
         // Creating a new CarPool
         $carpool = new CarPool();
-        $carpool->setStartLocation('Le Puy-en-Velay');
-        $carpool->setStartTime(
-            new \DateTime('@' . strtotime('2022-06-20 13:00:00'))
-        );
-        $carpool->setStopLocation('Lyon');
-        $carpool->setStopTime(
-            new \DateTime('@' . strtotime('2022-06-20 15:00:00'))
-        );
-        $carpool->setPrice(1000);
-        $carpool->setUserId(1);
+        $form = $this->createForm(CarPoolType::class, $carpool);
 
-        // Entity Manager
-        $em = $doctrine->getManager();
-        $em->persist($carpool);
-        $em->flush();
+        $form->handleRequest($request);
 
-        return $this->redirect($this->generateUrl('carpool-list'));
+        if($form->isSubmitted() && $form->isValid()){
+            // Entity Manager
+            $em = $doctrine->getManager();
+            $em->persist($carpool);
+            $em->flush();
+            return $this->redirect($this->generateUrl('carpool-list'));
+        }
+
+
+        return $this->render('carpool/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     #[Route('/delete/{carpool}', name: 'delete')]

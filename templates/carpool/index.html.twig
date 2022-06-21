@@ -27,7 +27,7 @@
 					<td>{{ carpool.stopTime|date('Y-m-d') }}</td>
 					<td>
 						<a href="{{ path('carpool-id', { carpool: carpool.id }) }}">
-							{{ carpool.price }}
+							{{ carpool.price/100 }}€
 						</a>
 					</td>
 					<td>{{ carpool.userId }}</td>
