@@ -39,7 +39,7 @@
 	<nav class="" id="connect-menu" role="menu">
 		<ul class="">
 			<li class="">
-				<a type="button" class="" href="/login">
+				<a type="button" class="" href="{{ path('app_login') }}">
 					Connexion
 					<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="" width="24" height="24" aria-hidden="true">
 						<polyline fill="none" stroke="#708C91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="9 18 15 12 9 6"></polyline>
@@ -47,8 +47,16 @@
 				</a>
 			</li>
 			<li class="">
-				<a type="button" class="" href="/register">
+				<a type="button" class="" href="{{ path('app_register') }}">
 					Inscription
+					<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="" width="24" height="24" aria-hidden="true">
+						<polyline fill="none" stroke="#708C91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="9 18 15 12 9 6"></polyline>
+					</svg>
+				</a>
+			</li>
+			<li class="">
+				<a type="button" class="" href="{{ path('app_logout') }}">
+					Déconnexion
 					<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="" width="24" height="24" aria-hidden="true">
 						<polyline fill="none" stroke="#708C91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="9 18 15 12 9 6"></polyline>
 					</svg>
