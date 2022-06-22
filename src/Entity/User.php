@@ -23,6 +23,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $password;
+    
+    #[ORM\Column(type: 'string')]
+    private $img_path;
 
     public function getId(): ?int
     {
@@ -92,5 +95,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getImgPath(): ?string
+    {
+        return $this->img_path;
+    }
+
+    public function setImgPath(string $img_path): self
+    {
+        $this->img_path = $img_path;
+
+        return $this;
     }
 }

@@ -30,7 +30,7 @@ class CarPoolController extends AbstractController
         ]);
     }
 
-    #[Route('/create', name: 'create')]
+    #[Route('/offer-seats', name: 'create')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         // Creating a new CarPool
